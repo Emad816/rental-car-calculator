@@ -9,7 +9,7 @@ public class RentalCarCalculatorApp {
 
         String date, tollAnswer, gpsAnswer, roadAnswer;
         int days, userAge;
-        boolean needToll = true, needGPS = true, needRoadSideAssistance = true;
+        boolean needToll = false, needGPS = false, needRoadSideAssistance = false;
         double basicCarRental, under25SurCharge, GPSCharge, roadAssistanceCharge, tollCharge, total;
         basicCarRental = 29.99;
         under25SurCharge = basicCarRental * 0.30;
@@ -59,16 +59,16 @@ public class RentalCarCalculatorApp {
 
         System.out.printf("please Enter your age: ");
         userAge = scanner.nextInt();
-        if (userAge < 25)
+        if (userAge >= 25)
             under25SurCharge = 0;
 
-        total = (basicCarRental * days) + tollCharge + GPSCharge + roadAssistanceCharge;
+        total = (basicCarRental * days) + (tollCharge * days) + (GPSCharge * days) + (roadAssistanceCharge * days) + under25SurCharge;
 
         System.out.printf("Your total is %.2f:\n" +
                 "Under 25 surcharge %.2f:\n" +
                 "Toll charge %.2f:\n" +
                 "GPS charge %.2f\n" +
-                "Roadside Assistance charge %2.f\n" +
+                "Roadside Assistance charge %.2f\n" +
                 "for the day %s and for the period %d days\n" +
                 "Thank you!",total , under25SurCharge, tollCharge, GPSCharge, roadAssistanceCharge, date, days);
 
