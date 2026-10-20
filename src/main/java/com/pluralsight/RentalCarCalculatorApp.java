@@ -62,7 +62,7 @@ public class RentalCarCalculatorApp {
         if (userAge >= 25)
             under25SurCharge = 0;
 
-        total = (basicCarRental * days) + (tollCharge * days) + (GPSCharge * days) + (roadAssistanceCharge * days) + under25SurCharge;
+        total = (basicCarRental * days) + (tollCharge * days) + (GPSCharge * days) + (roadAssistanceCharge * days) + (under25SurCharge * days);
 
         System.out.printf("Your total is %.2f:\n" +
                 "Under 25 surcharge %.2f:\n" +
