@@ -9,10 +9,10 @@ public class RentalCarCalculatorApp {
 
         String date, tollAnswer, gpsAnswer, roadAnswer;
         int days, userAge;
-        boolean needToll, needGPS, needRoadSideAssistance;
-        double basicCarRental, surCharge, GPSCharge, roadAssistanceCharge, tollCharge;
+        boolean needToll = true, needGPS = true, needRoadSideAssistance = true;
+        double basicCarRental, under25SurCharge, GPSCharge, roadAssistanceCharge, tollCharge, total;
         basicCarRental = 29.99;
-        surCharge = basicCarRental * 0.30;
+        under25SurCharge = basicCarRental * 0.30;
         tollCharge = 3.95;
         GPSCharge = 2.95;
         roadAssistanceCharge = 3.95;
@@ -31,6 +31,9 @@ public class RentalCarCalculatorApp {
             case "no" -> needToll = false;
             default -> System.out.println("Invalid answer");
         }
+        if (!needToll)
+            tollCharge = 0;
+
 
         System.out.printf("Do you  want a GPS at $2.95/day (yes/no): ");
         gpsAnswer = scanner.next();
@@ -39,6 +42,9 @@ public class RentalCarCalculatorApp {
             case "no" -> needGPS = false;
             default -> System.out.println("Invalid answer");
         }
+        if (!needGPS)
+            GPSCharge = 0;
+
 
         System.out.printf("Do you want roadside assistance at $3.95/day (yes/no): ");
         roadAnswer = scanner.next();
@@ -47,10 +53,24 @@ public class RentalCarCalculatorApp {
             case "no" -> needRoadSideAssistance = false;
             default -> System.out.println("Invalid answer");
         }
+        if (!needRoadSideAssistance)
+            roadAssistanceCharge =0;
+
 
         System.out.printf("please Enter your age: ");
         userAge = scanner.nextInt();
+        if (userAge < 25)
+            under25SurCharge = 0;
 
+        total = (basicCarRental * days) + tollCharge + GPSCharge + roadAssistanceCharge;
+
+        System.out.printf("Your total is %.2f:\n" +
+                "Under 25 surcharge %.2f:\n" +
+                "Toll charge %.2f:\n" +
+                "GPS charge %.2f\n" +
+                "Roadside Assistance charge %2.f\n" +
+                "for the day %s and for the period %d days\n" +
+                "Thank you!",total , under25SurCharge, tollCharge, GPSCharge, roadAssistanceCharge, date, days);
 
 
     }
